@@ -1,0 +1,31 @@
+function funcGoL(width, length, nStep, plotType)
+%  width = 10;
+%  length = 20;
+%  nStep = 100;%number of iteration of GoL
+  nHood = int8(rand (width, length ));
+  for i = 1:nStep; 
+    %Define the neighbours 1 = neighbours, 0 = self
+    neighbours = conv2( nHood, [1 1 1;1 0 1; 1 1 1], 'same' );
+    %calculates number of neighbours and determin if cell lives/dies  
+    nHood = nHood.*( neighbours == 2 | neighbours == 3 ) + ( 1 - nHood ).*( neighbours == 3 );
+      switch (plotType)
+        case "img"
+          imshow(nHood*10);
+          title("John Conway's Game of Life");
+          pause(0.01);
+        case "scatter"
+          array(:,:,i) = nHood;
+          [x,y,z]=ind2sub(size(array), find(array));
+  
+          scatter3(x(:),y(:),z(:),[],z(:),'filled');
+          title("John Conway's Game of Life");
+          axis([0 width 0 length 0 nStep]);
+          view(40+i,35);
+          pause(0.2);
+        otherwise
+          printf("plotType options:'img' and 'scatter'");
+          break;
+        endswitch
+    
+  end
+endfunction

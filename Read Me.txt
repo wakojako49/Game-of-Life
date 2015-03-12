@@ -1,0 +1,42 @@
+change log:
+GoL_Test.m - 9 March
+Iain_Haslam.m - 9 March
+GoL.m - 9 March
+sink.jpg - 9 March
+load_img - 10 March
+GoL_2_conv2.m - 10 march
+life4555_unstable.m - 10 march
+GoL_3D.m - 11 march
+funcGoL.m - 11 march
+
+instructions:
+run funcGoL.m in MATLAB or gnu Octave on the command window.
+funcGoL(width, length, nStep, plot)
+where:
+width - integer to determine the width of the neighbourhood
+length - integer to determine the width of the neighbourhood
+nStep - integer for number of iterations
+plot- display either a graphical image ("img") or 3D scatter plot ("scatter") of the Game of Life
+
+example: 
+>>funcGoL(50,50,100,"img")
+
+documentation:
+I started off researching on the rules of John Conway's Game of Life (GoL). In GoL, there is a reference cell which will continue to live only if the number of cells around it is either 2 or 3 (2 =< cell =< 3). Since the reference cell has only 2 states, either dead or alive, the whole system would comprise of a 2D array of 1 and 0. With this in mind, I used MATLAB/Octave since I have a lot of experience with it and I knew that  there were a lot of resources at hand that would help me adapt GoL. 
+
+On researching about GoL on MATLAB, I came across Iain Haslam's [1] web article on his implementation of it in Matlab. I studied and modified his work to run on Octave, seen in "Iain_Haslam.m". Instead of each cell checking how many neighbours it has, this program creates new arrays that moves the first and last row and column. In the program the arrays would move horizontally, vertically and diagonally in both directions. All of these arrays are then summed up to show the number of neighbours an array has. This array is then checked to see if cell value is within the bounds of the rules of GoL and then it will determine if the cells die of live. 
+
+As i tried to create my first program, the initial idea I had was for each cell to check the number of neighbours it had and then sum them up. I came across multiple problems with the checker going out of bounds of the array and the program becoming too complicated, as seen in "GoL.m" and "GoL_Test.m".
+
+Despite the early setback, I continued to look at the sources I had for some inspiration. Eventually I found a function [2], from an online forum for MATLAB, that does a similar operation and is usually used for image processing. I set up the kernel such that the output is the sum of the number of neighbours. I then added some more information to represent the data such as the 3D scatter plot to show the time lapse survival of the cells.
+
+[1] HASLAM, I.
+    Conway's Game of Life | Exolete
+    Haslam, I. Conway's Game of Life | Exolete[Internet].
+    Exolete.com. 2015 [cited 8 March 2015]. Available from:
+    http://exolete.com/life/
+[2] Shai
+    What's wrong with this game of life in Matlab? | Stackoverflow
+    Shai | Stackoverflow
+    stackoverflow.com 2015 [cited 10 March 2015]. Available from:
+    http://stackoverflow.com/questions/15370833/whats-wrong-with-this-game-of-life-in-matlab
